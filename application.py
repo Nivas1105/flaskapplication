@@ -1,6 +1,6 @@
 from flask import Flask
 application = Flask(__name__)
-@app.route("/")
+@application.route("/")
 def index():
     return "Test from Git"
 if __name__ == "__main__":
