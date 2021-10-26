@@ -135,7 +135,7 @@ def hello_put(path):
             return "<p><h1>You are Not Part of APP_BIOINFO_DATA_HUB Group Contact John Austin</h1></p>"
     else:
         return "<p><h1>You are Not Authorized, please contact John Austin</h1></p>"
-@app.route("/<path:path>",methods = ['DELETE'])
+@application.route("/<path:path>",methods = ['DELETE'])
 def hello_delete(path):
     val=request.headers.get('x-amzn-oidc-data') #get the encoded token
     print("token val is ",val)
