@@ -12,11 +12,11 @@ minimum_size = 1000
 count = 1
 
 from flask import Flask, jsonify, request,make_response,Response
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route("/",defaults={'path':''})
+@application.route("/",defaults={'path':''})
 
-@app.route("/<path:path>",methods = ['GET'])
+@application.route("/<path:path>",methods = ['GET'])
 def hello(path):
 
     #print("path is --",path)
@@ -83,7 +83,7 @@ async def processRequest(path,header):
 
 #@app.route("/",defaults={'path':''})
 
-@app.route("/<path:path>",methods = ['POST'])
+@application.route("/<path:path>",methods = ['POST'])
 def hello_post(path):
     #print("path is --",path)
     #print(request.headers)
@@ -111,7 +111,7 @@ def hello_post(path):
     else:
         return "<p><h1>You are Not Authorized, please contact John Austin</h1></p>"
 
-@app.route("/<path:path>",methods = ['PUT'])
+@application.route("/<path:path>",methods = ['PUT'])
 def hello_put(path):
     val=request.headers.get('x-amzn-oidc-data') #get the encoded token
     print("token val is ",val)
@@ -159,7 +159,7 @@ def hello_delete(path):
             return "<p><h1>You are Not Part of APP_BIOINFO_DATA_HUB Group Contact John Austin</h1></p>"
     else:
         return "<p><h1>You are Not Authorized, please contact John Austin</h1></p>"
-@app.route("/<path:path>",methods = ['OPTIONS'])                                                                        
+@application.route("/<path:path>",methods = ['OPTIONS'])                                                                        
 def hello_option(path):                                                                                                 
     val=request.headers.get('x-amzn-oidc-data') #get the encoded token
     print("token val is ",val)                                                                                          
@@ -184,7 +184,7 @@ def hello_option(path):
             return "<p><h1>You are Not Part of APP_BIOINFO_DATA_HUB Group Contact John Austin</h1></p>"
     else:
         return "<p><h1>You are Not Authorized, please contact John Austin</h1></p>"
-@app.route("/<path:path>",methods = ['PATCH'])#called for patch method
+@application.route("/<path:path>",methods = ['PATCH'])#called for patch method
 def hello_patch(path):
     print("Header Val --",len(request.headers))
     val=request.headers.get('x-amzn-oidc-data') #get the encoded token
@@ -211,4 +211,4 @@ def hello_patch(path):
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0')
+    application.run(host='0.0.0.0')
