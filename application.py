@@ -29,8 +29,6 @@ def hello(path):
     decodeval=jwt.decode(val,"secret",options={"verify_signature":False}) #command to decode
     print("Accept ----",request.headers.get("Accept"))
     header = dict(request.headers)
-    with open('/home/ec2-user/newheader.txt', 'w') as f:
-        f.write(json.dumps(header))
     if 'custom:GROUP_MEMBER' in decodeval:
         header['jwt-token'] = header.pop("X-Amzn-Oidc-Data")
         header['jwt-accesstoken'] = header.pop("X-Amzn-Oidc-Accesstoken")
@@ -66,8 +64,6 @@ def hello(path):
 
 async def processRequest(path,header):
     url = "http://internal-bioinformatics-dev-alb-backend-270089063.us-west-2.elb.amazonaws.com/"+path
-    with open('/home/ec2-user/afterheader.txt', 'w') as fi:
-        fi.write(json.dumps(header))
     request_get = requests.get(url,headers=header,stream=True)
     #acceptval=request.headers.get("Accept")
     if "Content-Type" in request_get.headers and 'image' in request_get.headers['Content-Type']:
